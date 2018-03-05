@@ -133,4 +133,12 @@ alertaApp.config(['config', '$authProvider',
       clientId: config.client_id,
       authorizationEndpoint: config.keycloak_url+'/auth/realms/'+config.keycloak_realm+'/protocol/openid-connect/auth'
     });
+    $authProvider.oauth2({
+      name: 'dex',
+      url: config.endpoint+'/auth/dex',
+      redirectUri: window.location.origin,
+      clientId: config.client_id,
+      scope: ['openid', 'profile', 'email', 'offline_access', 'groups'],
+      authorizationEndpoint: config.dex_url+'/auth'
+    });
 }]);
